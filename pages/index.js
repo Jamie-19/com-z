@@ -1,6 +1,5 @@
 // pages/index.js
 import React, { useState } from 'react';
-import Login from '../components/login';
 import Sidebar from '../components/sidebar';
 
 const Home = () => {

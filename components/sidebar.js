@@ -1,10 +1,49 @@
 // components/Sidebar.js
 import React from 'react';
+import { useState } from 'react';
 import { Avatar, IconButton } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import { Add, ExitToApp, SearchOutlined } from '@mui/icons-material';
+import { Add, ExitToApp, Home,  Message,  PeopleAlt,  SearchOutlined } from '@mui/icons-material';
+import SidebarTab from './sidebartab';
+import SidebarList from './sidebarlist';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+
+
+const tabs = [ {
+  id: 1,
+  icon:<Home/>,
+},{
+  id: 2,
+  icon:<Message/>,
+},{
+  id: 3,
+  icon:<PeopleAlt/>,
+}];
 
 const Sidebar = () => {
+
+  const [menu,setMenu] = useState(1);
+  const data = [{
+    id: 1,
+    name:"Vaidyanath B",
+    short:"VB"
+  },{
+    id: 2,
+    name:"Rahan Jose",
+    short:"RJ"
+  },{
+    id: 3,
+    name:"Hari Narayanan",
+    short:"HN"
+  }]
+
+
   return (
     <div className="sidebar">
       {/* Sidebar header */}
@@ -19,6 +58,7 @@ const Sidebar = () => {
           </IconButton>
         </div>
       </div>
+      {/*Search*/}
       <div className="sidebar__search">
         <form className="sidebar__search--container">
           <SearchOutlined/>
@@ -27,13 +67,68 @@ const Sidebar = () => {
           id="search"
           placeholder="Search for rooms"/>
         </form>
+
       </div>
+
+      <div className="sidebar__menu">
+        {tabs.map((tab) => (
+          <SidebarTab key={tab.id}
+          onClick={() => setMenu(tab.id)}
+          isActive = {menu === tab.id}
+          >
+            <div className="sidebar__menu--home">
+              {tab.icon}
+              <div className="sidebar__menu--line">
+
+              </div>
+              </div>
+          </SidebarTab>
+        ))}
+        </div>
+
+        {menu === 1 ?(
+          <SidebarList title="Chats" data={data}/>
+        ): menu === 2 ? (
+          <SidebarList title="Rooms" data={data}/>
+        ): menu === 3 ? (
+          <SidebarList title="Users" data={data}/>
+        ): menu === 4 ?(
+          <SidebarList title="Search Results" data={data}/>
+        ) : null}
+        
+
+      {/*Room Button */}
       <div className="sidebar__chat--addRoom">
         <IconButton>
-          <Add />
+          <Add/>
         </IconButton>
-
         </div>
+
+        {/*Create Room Dialog*/}
+
+        <Dialog maxWidth="sm" open={false} >
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Type the GD room
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="GD Room"
+            type="text"
+            fullWidth
+            variant="filled"
+            styles={{margintop:"20px"}}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color="error">Cancel</Button>
+          <Button color="success">Submit</Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   );
 };
