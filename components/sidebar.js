@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 
 
+
 const tabs = [ {
   id: 1,
   icon:<Home/>,
@@ -29,6 +30,8 @@ const tabs = [ {
 const Sidebar = () => {
 
   const [menu,setMenu] = useState(1);
+  const [roomName,setRoomName] = useState('')
+  const [isCreateRoom,setisCreateRoom] = useState(false);
   const data = [{
     id: 1,
     name:"Vaidyanath B",
@@ -41,7 +44,12 @@ const Sidebar = () => {
     id: 3,
     name:"Hari Narayanan",
     short:"HN"
-  }]
+  }];
+
+  async function createRoom(){
+    console.log(roomName);
+  }
+
 
 
   return (
@@ -99,14 +107,14 @@ const Sidebar = () => {
 
       {/*Room Button */}
       <div className="sidebar__chat--addRoom">
-        <IconButton>
+        <IconButton onClick={()=>setisCreateRoom(true)}>
           <Add/>
         </IconButton>
         </div>
 
         {/*Create Room Dialog*/}
 
-        <Dialog maxWidth="sm" open={false} >
+        <Dialog maxWidth="sm" open={isCreateRoom} onClose={() => setisCreateRoom(false)} >
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -115,7 +123,9 @@ const Sidebar = () => {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            onChange={event => setRoomName(event.target.value)}
+            value={roomName}
+            id="rooms"
             label="GD Room"
             type="text"
             fullWidth
@@ -124,8 +134,8 @@ const Sidebar = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="error">Cancel</Button>
-          <Button color="success">Submit</Button>
+          <Button color="error" onClick={() => setisCreateRoom(false)}>Cancel</Button>
+          <Button color="success" onClick={createRoom}>Submit</Button>
         </DialogActions>
       </Dialog>
 
