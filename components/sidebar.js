@@ -13,6 +13,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,8 +29,14 @@ const tabs = [ {
 }];
 
 const Sidebar = () => {
-
+ 
+  const val =[{
+    id:1,
+    name:"room1",
+  }]
   const [menu,setMenu] = useState(1);
+  const [reports,setReports] = useState([]);
+  const [rooms,setRooms] = useState(val);
   const [roomName,setRoomName] = useState('')
   const [isCreateRoom,setisCreateRoom] = useState(false);
   const data = [{
@@ -46,10 +53,31 @@ const Sidebar = () => {
     short:"HN"
   }];
 
+  const report=[{
+    id:1,
+    name:"Report for "
+    }];
+
   async function createRoom(){
-    console.log(roomName);
+    if(roomName?.trim()){
+        const newRoom = {
+          id:rooms.length + 1,
+          name:roomName,
+        };
+
+        setRooms((prevRooms) => [...prevRooms,newRoom]);
+        setRoomName('');
+        setisCreateRoom(false);
+    }
   }
 
+   React.useEffect(() => {
+     const updatedReports = data.map((user) => ({
+       id: user.id,
+       name: `Report for ${user.name}`,
+     }));
+     setReports(updatedReports);
+} , [data]);
 
 
   return (
@@ -94,15 +122,15 @@ const Sidebar = () => {
         ))}
         </div>
 
-        {menu === 1 ?(
-          <SidebarList title="Chats" data={data}/>
+        { menu === 1 ? (
+          <SidebarList title="Rooms" data={rooms}/>
         ): menu === 2 ? (
-          <SidebarList title="Rooms" data={data}/>
-        ): menu === 3 ? (
+          <SidebarList title="Reports" data={reports}/>
+        ): menu === 3 ?(
           <SidebarList title="Users" data={data}/>
-        ): menu === 4 ?(
-          <SidebarList title="Search Results" data={data}/>
-        ) : null}
+        ) : menu === 4 ?(
+          <SidebarList title="" data={data}/>
+          ):null}
         
 
       {/*Room Button */}
@@ -115,7 +143,7 @@ const Sidebar = () => {
         {/*Create Room Dialog*/}
 
         <Dialog maxWidth="sm" open={isCreateRoom} onClose={() => setisCreateRoom(false)} >
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>GD</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Type the GD room
