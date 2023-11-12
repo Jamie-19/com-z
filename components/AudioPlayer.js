@@ -20,43 +20,43 @@ export default function AudioPlayer({
   const interval = useRef();
   const isUploading = useRef(audioUrl === "uploading");
 
-  useEffect(() => {
-    if (isUploading.current && audioUrl !== "uploading") {
-      audio.current = new Audio(audioUrl);
-      audio.current.load();
-      setLoaded(true);
-    } else if (isUploading.current === false) {
-      setLoaded(true);
-    }
-  }, [audioUrl]);
+  // useEffect(() => {
+  //   if (isUploading.current && audioUrl !== "uploading") {
+  //     audio.current = new Audio(audioUrl);
+  //     audio.current.load();
+  //     setLoaded(true);
+  //   } else if (isUploading.current === false) {
+  //     setLoaded(true);
+  //   }
+  // }, [audioUrl]);
 
-  useEffect(() => {
-    if (isLoaded) {
-      getAudioDuration(audio.current).then(() => {
-        setMetadataLoaded(true);
-      });
-    }
-  }, [isLoaded]);
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     getAudioDuration(audio.current).then(() => {
+  //       setMetadataLoaded(true);
+  //     });
+  //   }
+  // }, [isLoaded]);
 
-  useEffect(() => {
-    if (isMetadataLoaded) {
-      audio.current.addEventListener("canplaythrough", () => {
-        if (!totalDuration.current) {
-          setMediaLoaded(true);
-          const time = formatTime(audio.current.duration);
-          totalDuration.current = time;
-          setDuration(totalDuration.current);
-        }
-      });
+  // useEffect(() => {
+  //   if (isMetadataLoaded) {
+  //     audio.current.addEventListener("canplaythrough", () => {
+  //       if (!totalDuration.current) {
+  //         setMediaLoaded(true);
+  //         const time = formatTime(audio.current.duration);
+  //         totalDuration.current = time;
+  //         setDuration(totalDuration.current);
+  //       }
+  //     });
 
-      audio.current.addEventListener("ended", () => {
-        clearInterval(interval.current);
-        setDuration(totalDuration.current);
-        setSliderValue(0);
-        setPlaying(false);
-      });
-    }
-  }, [isMetadataLoaded]);
+  //     audio.current.addEventListener("ended", () => {
+  //       clearInterval(interval.current);
+  //       setDuration(totalDuration.current);
+  //       setSliderValue(0);
+  //       setPlaying(false);
+  //     });
+  //   }
+  // }, [isMetadataLoaded]);
 
   useEffect(() => {
     if (audioId !== id) {
