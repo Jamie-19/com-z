@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Avatar, IconButton } from '@mui/material';
-import { deepOrange } from '@mui/material/colors';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Add, ExitToApp, Home,  Message,  PeopleAlt,  SearchOutlined } from '@mui/icons-material';
 import SidebarTab from './sidebartab';
 import SidebarList from './sidebarlist';
@@ -84,7 +84,7 @@ const Sidebar = () => {
       {/* Sidebar header */}
       <div className="sidebar__header">
         <div className="sidebar__header--left">
-          <Avatar alt="James Joseph" sx={{ bgcolor: deepOrange[500] }}>JJ</Avatar>
+          <Avatar alt="James Joseph" sx={{ bgcolor: deepPurple[500] }}>JJ</Avatar>
           <h3>James Joseph</h3>
         </div>
         <div className="sidebar__header--right">
