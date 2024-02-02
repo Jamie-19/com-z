@@ -34,7 +34,7 @@ const Sidebar = () => {
     name:"room1",
   }]
   const [menu,setMenu] = useState('');
-  const [reports,setReports] = useState([]);
+  const [reports] = useState([]);
   const [rooms,setRooms] = useState(val);
   const [roomName,setRoomName] = useState('');
   const [isCreateRoom,setisCreateRoom] = useState(false);
