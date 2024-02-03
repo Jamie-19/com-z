@@ -93,6 +93,7 @@ const Sidebar = () => {
           </IconButton>
         </div>
       </div>
+      
       {/*Search*/}
       <div className="sidebar__search">
         <form className="sidebar__search--container">
