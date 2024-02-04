@@ -62,6 +62,7 @@ const Sidebar = () => {
         const newRoom = {
           id:rooms.length + 1,
           name:roomName,
+          localStorage:roomName,
         };
 
         setRooms((prevRooms) => [...prevRooms,newRoom]);
@@ -93,7 +94,7 @@ const Sidebar = () => {
           </IconButton>
         </div>
       </div>
-      
+
       {/*Search*/}
       <div className="sidebar__search">
         <form className="sidebar__search--container">
