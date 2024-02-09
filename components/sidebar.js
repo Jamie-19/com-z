@@ -74,6 +74,7 @@ const Sidebar = () => {
    React.useEffect(() => {
      const updatedReports = data.map((user) => ({
        id: user.id,
+       localStorage: user.name,
        name: `Report for ${user.name}`,
      }));
     //  setReports(updatedReports);
