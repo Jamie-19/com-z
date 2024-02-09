@@ -13,7 +13,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 
 
 
@@ -34,10 +33,10 @@ const Sidebar = () => {
     id:1,
     name:"room1",
   }]
-  const [menu,setMenu] = useState(1);
+  const [menu,setMenu] = useState('');
   const [reports,setReports] = useState([]);
   const [rooms,setRooms] = useState(val);
-  const [roomName,setRoomName] = useState('')
+  const [roomName,setRoomName] = useState('');
   const [isCreateRoom,setisCreateRoom] = useState(false);
   const data = [{
     id: 1,
@@ -76,7 +75,7 @@ const Sidebar = () => {
        id: user.id,
        name: `Report for ${user.name}`,
      }));
-     setReports(updatedReports);
+    //  setReports(updatedReports);
 } , [data]);
 
 
