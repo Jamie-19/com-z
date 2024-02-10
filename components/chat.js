@@ -111,8 +111,6 @@ const [file, setFile] = useState(null);
           <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}
                 onClick={(e) => handleAudioInputChange(e)}
           >
-                            Upload file
-           
         </Button>
         </div>
         </div>
