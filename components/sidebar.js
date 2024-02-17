@@ -52,23 +52,33 @@ const Sidebar = () => {
     short:"HN"
   }];
 
+  const deleteRoom = (roomId) => {
+    setRooms(prevRooms => prevRooms.filter(room => room.id !== roomId));
+  };
+
+  const updateRoom = (roomId, newName) => {
+    setRooms(prevRooms =>
+      prevRooms.map(room => (room.id === roomId ? { ...room, name: newName } : room))
+    );
+  };
+
   const report=[{
     id:1,
     name:"Report for Vaidyanath B "
     }];
 
   async function createRoom(){
-    if(roomName?.trim()){
-        const newRoom = {
-          id:rooms.length + 1,
-          name:roomName,
-        };
-
-        setRooms((prevRooms) => [...prevRooms,newRoom]);
-        setRoomName('');
-        setisCreateRoom(false);
+    if (roomName.trim()) {
+      const newRoom = {
+        id: rooms.length + 1,
+        name: roomName,
+      };
+  
+      setRooms(prevRooms => [...prevRooms, newRoom]);
+      setRoomName('');
+      setisCreateRoom(false);
     }
-  }
+  };
 
    React.useEffect(() => {
      const updatedReports = data.map((user) => ({
