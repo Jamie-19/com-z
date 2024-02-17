@@ -914,7 +914,7 @@ em {
   align-items: center;
   border-bottom: 1px solid lightgrey;
   background-color: #ededed;
-  z-index: 1;
+  z-index: auto;
 }
 .chat__header--footer{
   display: flex;
