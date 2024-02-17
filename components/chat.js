@@ -1,7 +1,7 @@
 import {app} from './firebase.config';
 import React, { useState } from 'react';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
-import { Collections, MoreVert } from '@mui/icons-material';
+import { Collections, Mic, MoreVert } from '@mui/icons-material';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {collection , doc, setDoc, getFirestore, getDocs } from "firebase/firestore";
 import Button from '@mui/material/Button';
@@ -113,8 +113,30 @@ const [file, setFile] = useState(null);
           > 
         </Button>
         </div>
+        
         </div>
+        <div style={{
+        display: "-webkit-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "fixed",
+        bottom: "0",
+        width: "100%",
+        padding: "20px",
+        zIndex: "999", 
+      }}>
+        <Button style={{
+          padding: "20px",
+          borderRadius: "50%",
+          backgroundColor: "white",
+          boxShadow: "0 4px 6px 0 rgba(0, 0, 0, 0.2)",
+        }}>
+          <Mic />
+        </Button>
       </div>
+
+      </div>
+      
     </div>
   );
 };
