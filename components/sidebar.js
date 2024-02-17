@@ -54,7 +54,7 @@ const Sidebar = () => {
 
   const report=[{
     id:1,
-    name:"Report for "
+    name:"Report for Vaidyanath B "
     }];
 
   async function createRoom(){
@@ -62,7 +62,6 @@ const Sidebar = () => {
         const newRoom = {
           id:rooms.length + 1,
           name:roomName,
-          localStorage:roomName,
         };
 
         setRooms((prevRooms) => [...prevRooms,newRoom]);
